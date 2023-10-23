@@ -163,10 +163,9 @@ class _VoiceMessageState extends State<VoiceMessage>
                     padding: const EdgeInsets.all(8),
                     width: 10,
                     height: 0,
-                    child: CircularProgressIndicator(
+                    child:  CircularProgressIndicator(
                       strokeWidth: 1,
-                      color:
-                          widget.me ? widget.meFgColor : widget.contactFgColor,
+                      color: Colors.grey,
                     ),
                   )
                 : Icon(
@@ -316,15 +315,8 @@ class _VoiceMessageState extends State<VoiceMessage>
     if (widget.duration != null) {
       _audioDuration = widget.duration;
     } else {
-      if (widget.audioFile != null) {
-        String path = (await widget.audioFile!).path;
-        _audioDuration = await jsAudio.AudioPlayer().setFilePath(path);
-      } else if (widget.audioSrc != null) {
-        _audioDuration = await jsAudio.AudioPlayer().setUrl(widget.audioSrc!);
-      }
+      _audioDuration = await jsAudio.AudioPlayer().setUrl(widget.audioSrc!);
     }
-
-    _audioDuration ??= Duration(seconds: 60);
     duration = _audioDuration!.inMilliseconds;
     maxDurationForSlider = duration + .0;
 
