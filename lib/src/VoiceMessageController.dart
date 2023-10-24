@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'dart:math';
 import 'package:just_audio/just_audio.dart' as jsAudio;
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +8,7 @@ import 'package:voice_message_package/src/helpers/colors.dart';
 import 'package:voice_message_package/src/helpers/utils.dart';
 
 class VoiceMessageController extends ChangeNotifier {
+  final String id = Random().nextInt(9999999).toString();
   final String? audioSrc;
   Future<File>? audioFile;
   final Duration? duration;
